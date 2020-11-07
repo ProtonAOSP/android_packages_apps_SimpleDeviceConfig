@@ -17,6 +17,7 @@ android_app {
     srcs: ["src/**/*.java"],
     resource_dirs: ["res"],
     platform_apis: true,
+    system_ext_specific: true,
     certificate: "platform",
     privileged: true,
     manifest: "AndroidManifest.xml",
