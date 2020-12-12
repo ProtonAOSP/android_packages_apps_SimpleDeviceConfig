@@ -29,13 +29,18 @@ public class BootReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         new Thread(() -> {
             Log.i(TAG, "Updating device config at boot");
-            updateConfig(context);
+            updateDefaultConfigs(context);
         }).start();
     }
 
-    private void updateConfig(Context context) {
+    private void updateDefaultConfigs(Context context) {
+        updateConfig(context, R.array.configs_base);
+        updateConfig(context, R.array.configs_device);
+    }
+
+    private void updateConfig(Context context, int configArray) {
         // Set current properties
-        String[] rawProperties = context.getResources().getStringArray(R.array.device_config);
+        String[] rawProperties = context.getResources().getStringArray(configArray);
         for (String property : rawProperties) {
             String[] kv = property.split("=");
             String fullKey = kv[0];
