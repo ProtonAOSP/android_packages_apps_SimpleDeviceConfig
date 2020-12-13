@@ -42,13 +42,17 @@ public class BootReceiver extends BroadcastReceiver {
         // Set current properties
         String[] rawProperties = context.getResources().getStringArray(configArray);
         for (String property : rawProperties) {
+            // Format: namespace/key=value
             String[] kv = property.split("=");
             String fullKey = kv[0];
-            String[] nk = fullKey.split("/");
+            String[] nsKey = fullKey.split("/");
 
-            String namespace = nk[0];
-            String key = nk[1];
-            String value = kv[1];
+            String namespace = nsKey[0];
+            String key = nsKey[1];
+            String value = "";
+            if (kv.length > 1) {
+                value = kv[1];
+            }
 
             DeviceConfig.setProperty(namespace, key, value, true);
         }
