@@ -15,6 +15,11 @@
     limitations under the License.
 -->
 <resources>
+    <!-- Configs for all devices. Provisioned on every boot. -->
     <string-array name="configs_base" />
+    <!-- Configs for all devices. Only provisioned if not already set. -->
+    <string-array name="configs_base_soft" />
+
+    <!-- Device-specific configs, for overlaying in device trees. Provisioned on every boot. -->
     <string-array name="configs_device" />
 </resources>
